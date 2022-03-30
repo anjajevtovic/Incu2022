@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "8ef9076e-00da-49ad-8535-32ca440743da",
+		"name": "DevNet Cisco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DNA Center",
+			"item": [
+				{
+					"name": "Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", data.Token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Cisco123!",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "devnetuser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{dnac}}/dna/system/api/v1/auth/token",
+							"host": [
+								"{{dnac}}"
+							],
+							"path": [
+								"dna",
+								"system",
+								"api",
+								"v1",
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all devices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dnac}}/dna/intent/api/v1/network-device",
+							"host": [
+								"{{dnac}}"
+							],
+							"path": [
+								"dna",
+								"intent",
+								"api",
+								"v1",
+								"network-device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dnac}}/dna/intent/api/assurance/v1/host",
+							"host": [
+								"{{dnac}}"
+							],
+							"path": [
+								"dna",
+								"intent",
+								"api",
+								"assurance",
+								"v1",
+								"host"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meraki",
+			"item": [
+				{
+					"name": "Get organisation ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cisco-Meraki-API-Key",
+								"value": "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.meraki.com/api/v0/organizations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"meraki",
+								"com"
+							],
+							"path": [
+								"api",
+								"v0",
+								"organizations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get network of organisation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cisco-Meraki-API-Key",
+								"value": "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.meraki.com/api/v1/organizations/681155/networks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"meraki",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"organizations",
+								"681155",
+								"networks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get devices for network",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cisco-Meraki-API-Key",
+								"value": "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.meraki.com/api/v1/networks/L_566327653141843049/devices",
+							"protocol": "https",
+							"host": [
+								"api",
+								"meraki",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"networks",
+								"L_566327653141843049",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Devices Clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cisco-Meraki-API-Key",
+								"value": "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.meraki.com/api/v1/devices/Q2LD-3Y7V-7Y2X/clients",
+							"protocol": "https",
+							"host": [
+								"api",
+								"meraki",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices",
+								"Q2LD-3Y7V-7Y2X",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "dnac",
+			"value": "https://sandboxdnac.cisco.com/"
+		}
+	]
+}
